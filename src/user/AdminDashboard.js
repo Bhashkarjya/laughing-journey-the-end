@@ -3,29 +3,29 @@ import { isAuthenticated } from "../auth";
 import Layout from "../core/Layout";
 import {Link} from "react-router-dom";
 
-const UserDashboard = () => {
+const AdminDashboard = () => {
     const {user: {_id,name,email,role}} = isAuthenticated();
 
-    const UserLinks = () => {
+    const adminLinks = () => {
         return (
             <div className="card">
                 <h4 className="card-header">User Links</h4>
                 <ul className="list-group">
                     <ul className="list-group-main">
-                        <Link className="nav-link" to="/cart">My Cart</Link>
+                        <Link className="nav-link" to="/create/category">Create Category</Link>
                     </ul>
                     <ul className="list-group-main">
-                        <Link className="nav-link" to="/profile/update">Update Profile</Link>
+                        <Link className="nav-link" to="/create/product">Create Product</Link>
                     </ul>
                 </ul>
             </div>
         )
     }
 
-    const userInfo = () => {
+    const adminInfo = () => {
         return (
             <div className="card mb-5">
-                <h3 className="card-header"> User Information</h3>
+                <h3 className="card-header"> Admin Information</h3>
                 <ul className="list-group">
                     <li className="list-group-item">{name}</li>
                     <li className="list-group-item">{email}</li>
@@ -35,29 +35,18 @@ const UserDashboard = () => {
         )
     }
 
-    const purchaseHistory = () => {
-        return (
-            <div className="card">
-                <h3 className="card-header">Purchase Information</h3>
-                <ul className="list-group">
-                    <li className="list-group-item">History</li>
-                </ul>
-            </div>
-        )
-    }
     return (
         <Layout title="Dashboard" description={`Have a Good Day ${name}`} className='container-fluid'>
             <div className="row">
                 <div className="col-3">
-                    {UserLinks()}
+                    {adminLinks()}
                 </div>
                 <div className="col-9">
-                    {userInfo()}
-                    {purchaseHistory()}
+                    {adminInfo()}
                 </div>
             </div>
         </Layout>
     )
 }
 
-export default UserDashboard;
+export default AdminDashboard;

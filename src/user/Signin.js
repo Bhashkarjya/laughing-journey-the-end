@@ -65,6 +65,9 @@ const Signin = () => {
                 return <Redirect to="/user/dashboard" />
             }
         }
+        if(isAuthenticated() && isAuthenticated().user.role === 0){
+            return <Redirect to="/" />
+        }
     }
 
     const signInForm = () => {
